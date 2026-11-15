@@ -259,7 +259,7 @@ async fn run_chat(
         convo.push(json!({"role": "assistant", "content": outcome.blocks}));
         let mut results = Vec::new();
         for call in &outcome.tools {
-            let result = skills::run(app, skill_state, policy, character_id, &call.name, &call.input);
+            let result = skills::run(app, skill_state, policy, character_id, &call.name, &call.input).await;
             let (content, is_error) = match &result {
                 Ok(s) => (s.clone(), false),
                 Err(e) => (e.clone(), true),

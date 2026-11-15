@@ -458,10 +458,10 @@ export default function App() {
                       <option value="0">0: chat and voice only</option>
                       <option value="1">1: read-only (time, battery, allowed folders)</option>
                       <option value="2">2: reversible (open app or link, reminders)</option>
-                      <option value="3">3: side effects (not available yet: needs a confirmation step first)</option>
+                      <option value="3">3: side effects (type and click in Gizi's Chrome, each one needs your approval)</option>
                     </select>
                   </label>
-                  <p class="muted">Skills themselves arrive in a later milestone. These limits are stored now so they are in place first.</p>
+                  <p class="muted">Gizi's Chrome only visits and acts on the web hosts listed below. Sign in to your sites once in that window.</p>
                   <label>
                     Allowed apps (one per line)
                     <textarea rows={3} value={(d.skills?.allowApps ?? []).join("\n")} onInput={(e) => set(["skills", "allowApps"], text(e).split("\n"))} />

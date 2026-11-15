@@ -508,3 +508,6 @@ html.overlay #root {
   padding: 0 24px;
   margin: 4px 0;
 }
+
+.banner.approval { border: 2px solid #e0a030; background: #2a2210; }
+.approval-text { white-space: pre-wrap; word-break: break-word; margin: 0.5rem 0; font: inherit; max-height: 14rem; overflow: auto; }

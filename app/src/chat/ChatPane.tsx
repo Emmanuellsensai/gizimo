@@ -287,6 +287,14 @@ export default function ChatPane({ character }: { character: Character }) {
   const [showLog, setShowLog] = useState(false);
   const [logLines, setLogLines] = useState<string[]>([]);
   const [reminder, setReminder] = useState<string | null>(null);
+  const [approval, setApproval] = useState<{ id: string; summary: string } | null>(null);
+
+  function answer(approved: boolean) {
+    if (!approval) return;
+    const id = approval.id;
+    setApproval(null);
+    void invoke("skills_approve", { id, approved }).catch(() => undefined);
+  }
 
   // The kill switch state, and reminders Gizi set for you.
   useEffect(() => {
@@ -295,6 +303,11 @@ export default function ChatPane({ character }: { character: Character }) {
       .catch(() => undefined);
     const stops = [
       listen<{ enabled: boolean }>("gizimo:skills", (e) => setSkillsOn(e.payload.enabled)),
+      listen<{ id: string; summary: string }>("gizimo:approval", (e) => {
+        setApproval(e.payload);
+        chime();
+      }),
+      listen<{ id: string }>("gizimo:approval-done", (e) => setApproval((a) => (a && a.id === e.payload.id ? null : a))),
       listen<{ text: string }>("gizimo:reminder", (e) => {
         setReminder(e.payload.text);
         chime();
@@ -445,6 +458,16 @@ export default function ChatPane({ character }: { character: Character }) {
               </p>
             );
           })}
+        </div>
+      )}
+      {approval && (
+        <div class="banner approval" role="alertdialog" aria-live="assertive" aria-label="Gizi needs your approval">
+          <strong>Gizi wants your OK</strong>
+          <pre class="approval-text">{approval.summary}</pre>
+          <button onClick={() => answer(true)}>Approve</button>{" "}
+          <button class="small" onClick={() => answer(false)}>
+            Deny
+          </button>
         </div>
       )}
       {reminder && (

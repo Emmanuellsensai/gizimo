@@ -3,6 +3,7 @@
 // The web side validates the full schema. The Rust side is the gatekeeper for the file system: it only accepts
 // ids that match the schema pattern, so a character can never read or write outside its own folder.
 mod avatars;
+mod chrome;
 mod ears;
 mod keys;
 mod llm;
@@ -204,6 +205,9 @@ pub fn run() {
             skills::skills_status,
             skills::skills_set_enabled,
             skills::skills_log,
+            skills::skills_approve,
+            #[cfg(debug_assertions)]
+            chrome::chrome_selftest,
             overlay::overlay_show,
             overlay::overlay_hide,
             overlay::overlay_toggle,
