@@ -1,0 +1,31 @@
+# Dependencies and build output
+node_modules/
+dist/
+target/
+**/gen/
+*.log
+
+# Generated files
+app/src/character/validate.generated.js
+
+# Private working notes (contain paths, costs and business details): keep out of the repo
+notes-private/
+
+# Local test material and big tools used only on the developer's PC
+test-assets/
+ears/whisper.cpp/
+ears/whisper-repo/
+ears/venv/
+ears/kola-hf/
+ears/converted/
+ears/bench/
+ears/*.bin
+ears/*.log
+
+# Models, recordings and anything else that must never be published
+*.onnx
+*.safetensors
+*.vrm
+*.task
+.env
+.env.*
