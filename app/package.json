@@ -11,7 +11,7 @@
     "gen": "node scripts/gen-validator.mjs",
     "predev": "npm run gen",
     "prebuild": "npm run gen",
-    "test": "npm run gen && node scripts/test-validator.mjs && node scripts/test-speech.mjs && node scripts/test-avatar.mjs && node scripts/test-wake.mjs"
+    "test": "npm run gen && node scripts/test-validator.mjs && node scripts/test-speech.mjs && node scripts/test-avatar.mjs && node scripts/test-wake.mjs && node scripts/test-kola.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2",

@@ -4,7 +4,7 @@ import { buildSystemPrompt } from "./prompt";
 import { clearApiKey, keyStatus, setApiKey, stopChat, streamChat, type ChatMessage } from "./api";
 import { StreamSpeaker } from "../voice/speaker";
 import { EARS_MB, Listener, micErrorMessage, saveEarsSize, type EarsSize } from "../voice/stt";
-import { cancelAllSpeech, engineFor, isKnownPack, kokoroEngine, usesKokoro } from "../voice/engines";
+import { cancelAllSpeech, engineFor, isKnownPack, kokoroEngine, kolaEngine, usesKokoro, usesKola } from "../voice/engines";
 import { KOKORO_DOWNLOAD_MB, type EngineStatus } from "../voice/kokoro";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
@@ -121,6 +121,7 @@ export default function ChatPane({ character }: { character: Character }) {
     if (usesKokoro(character.voice.pack)) {
       if (kokoroEngine.ready) setVoiceStatus({ state: "ready" });
       else kokoroEngine.warm();
+      if (usesKola(character.voice.pack)) void kolaEngine.warm();
     }
     return () => {
       kokoroEngine.onStatus = null;

@@ -388,6 +388,7 @@ export default function App() {
                       <option value="kokoro:bf_isabella">British female, softer</option>
                       <option value="kokoro:bm_george">British male</option>
                       <option value="kokoro:bm_lewis">British male, deeper</option>
+                      <option value="kola">Your own Kola voice (needs its files installed on this PC)</option>
                       <option value="os">Windows voice only</option>
                     </datalist>
                   </label>

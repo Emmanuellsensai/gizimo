@@ -6,6 +6,7 @@ mod avatars;
 mod chrome;
 mod ears;
 mod keys;
+mod kola_voice;
 mod llm;
 mod overlay;
 mod packs;
@@ -205,6 +206,8 @@ pub fn run() {
             skills::skills_status,
             skills::skills_set_enabled,
             skills::skills_log,
+            kola_voice::kola_voice_status,
+            kola_voice::kola_voice_read,
             skills::skills_approve,
             #[cfg(debug_assertions)]
             chrome::chrome_selftest,
